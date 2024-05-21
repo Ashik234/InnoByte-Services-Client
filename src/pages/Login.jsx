@@ -10,9 +10,11 @@ import userRequest from "../utils/userRequest";
 import { LoginSchema } from "../validation/Yup";
 import { toast } from "react-toastify";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-
+import { useDispatch } from "react-redux";
+import { changeUserDetails } from "../Redux/user/userSlice";
 function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const initialValues = { email: "", password: "" };
 
@@ -21,8 +23,15 @@ function Login() {
       return userRequest.post("/login", data);
     },
     onSuccess: (data) => {
-        localStorage.setItem("userJWT", data.data.token);
-        console.log(data);
+      dispatch(
+        changeUserDetails({
+          userId: data.data.user._id,
+          username: data.data.user.username,
+          email: data.data.user.email,
+        })
+      );
+      localStorage.setItem("userJWT", data.data.token);
+      console.log(data);
       toast.success(data.data.message);
       navigate("/");
     },
@@ -81,14 +90,16 @@ function Login() {
             </div>
             <div
               className={`${
-                touched.password && errors.password ? "opacity-100" : "opacity-0"
+                touched.password && errors.password
+                  ? "opacity-100"
+                  : "opacity-0"
               } text-red-500 text-xs mb-4`}
             >
               {errors.password ? errors.password : "None"}
             </div>
             <div>
               <Button
-              type="submit"
+                type="submit"
                 variant="contained"
                 size="medium"
                 className="w-full mt-2"
