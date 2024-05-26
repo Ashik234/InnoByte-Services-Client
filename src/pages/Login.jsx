@@ -78,6 +78,7 @@ function Login() {
             <div className="mt-4">
               <TextField
                 name="password"
+                type="password"
                 size="small"
                 theme={muiCustomTheme}
                 label="Password"
