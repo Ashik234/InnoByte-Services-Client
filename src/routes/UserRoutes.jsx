@@ -8,6 +8,7 @@ import Layout from "../pages/Layout";
 import NotFoundPage from "../pages/NotFoundPage";
 import Profile from "../pages/Profile";
 import EditProfile from "../pages/EditProfile";
+import ProtectRoutes from "./Protected/ProtectedRoutes";
 
 function UserRoutes() {
   return (
@@ -32,9 +33,30 @@ function UserRoutes() {
         }
       />
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/edit" element={<EditProfile />} />
+        <Route
+          index
+          element={
+            <ProtectRoutes>
+              <Home />
+            </ProtectRoutes>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectRoutes>
+              <Profile />
+            </ProtectRoutes>
+          }
+        />
+        <Route
+          path="/profile/edit"
+          element={
+            <ProtectRoutes>
+              <EditProfile />
+            </ProtectRoutes>
+          }
+        />
       </Route>
     </Routes>
   );
