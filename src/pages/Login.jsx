@@ -28,10 +28,12 @@ function Login() {
           userId: data.data.user._id,
           username: data.data.user.username,
           email: data.data.user.email,
+          contact: data.data.user.contact,
+          about:data.data.user.about,
+          image: data.data.user.imageUrl,
         })
       );
       localStorage.setItem("userJWT", data.data.token);
-      console.log(data);
       toast.success(data.data.message);
       navigate("/");
     },

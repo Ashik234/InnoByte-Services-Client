@@ -1,5 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,17 @@ function EditProfile() {
   const editProfile = useMutation({
     mutationFn: (data) => userRequest.post("/edit", data),
     onSuccess: (data) => {
-      dispatch(changeUserDetails(data.data.user));
+      // dispatch(changeUserDetails(data.data.user));
+      dispatch(
+        changeUserDetails({
+          userId: data.data.user._id,
+          username: data.data.user.username,
+          email: data.data.user.email,
+          contact: data.data.user.contact,
+          about:data.data.user.about,
+          image: data.data.user.imageUrl,
+        })
+      );
       toast.success(data.data.message);
       navigate("/profile");
     },
