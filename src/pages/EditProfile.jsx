@@ -21,7 +21,6 @@ function EditProfile() {
   const editProfile = useMutation({
     mutationFn: (data) => userRequest.post("/edit", data),
     onSuccess: (data) => {
-      // dispatch(changeUserDetails(data.data.user));
       dispatch(
         changeUserDetails({
           userId: data.data.user._id,
@@ -75,6 +74,7 @@ function EditProfile() {
               Contact
             </label>
             <input
+            required
               type="number"
               name="contact"
               value={formData.contact}
@@ -88,6 +88,7 @@ function EditProfile() {
             </label>
             <textarea
               name="about"
+              required
               value={formData.about}
               onChange={handleChange}
               className="mt-1 p-2 w-full border rounded"
