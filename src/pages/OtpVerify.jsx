@@ -12,8 +12,8 @@ function OtpVerify({ email }) {
   const otpMutation = useMutation({
     mutationFn: (data) => userRequest.post("/verify-otp", { ...data, email }),
     onSuccess: (data) => {
-      localStorage.setItem("userJWT", data.token);
-      toast.success(data.message);
+      localStorage.setItem("userJWT", data.data.token);
+      toast.success(data.data.message);
       navigate("/");
     },
     onError: (error) => {
@@ -35,7 +35,6 @@ function OtpVerify({ email }) {
   };
 
   return (
-    <div className="flex justify-center bg-F9F9F9 p-4 sm:p-14 h-full">
       <div className="bg-white lg:rounded-l-xl rounded-l-md border sm:w-1/2">
         <h1 className="p-4">Enter OTP</h1>
         <div className="lg:w-96 sm:w-80 mx-auto px-4">
@@ -65,7 +64,6 @@ function OtpVerify({ email }) {
           </Form>
         </div>
       </div>
-    </div>
   );
 }
 

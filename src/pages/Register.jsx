@@ -41,9 +41,9 @@ function Register() {
   }
 
   return (
-    <div className="flex justify-center bg-F9F9F9 p-4 sm:p-14 h-full">
+    <div className="flex justify-center p-4 sm:p-14 h-full">
       <div className="bg-white lg:rounded-l-xl rounded-l-md border sm:w-1/2">
-        <h1 className="p-4">LOGO</h1>
+        <img className='w-32 h-32' src="https://media.licdn.com/dms/image/D560BAQGqQE-xTODoGA/company-logo_200_200/0/1708108358962/innobyte_services_logo?e=2147483647&v=beta&t=AKYAufKyxX7Li2E6V6y5iB9B3mDod4Wg8RVpCFLBzvU" alt="" />
 
         <div className="flex items-center justify-center">
           <div className="text-center">
